@@ -1,38 +1,54 @@
 def calculator():
-    print("Enter q to stop")
+    print("Enter q to stop\n")
 
     while True:
-        num1 = input("Enter the first number: ")
+
+        num1 = input("Enter the first number: ").strip()
+        try:
+            num1 = float(num1)
+        except ValueError:
+            print("That was not a valid number!")
+            continue
         if num1 == "q":
             return "Goodbye"
-        num2 = input("Enter the second number: ")
+        num2 = input("Enter the second number: ").strip()
+        try:
+            num2 = float(num2)
+        except ValueError:
+            print("That was not a valid number!")
+            continue
         if num2 == "q":
             return "Goodbye"
-        
-        opt = input("Enter the operation(option +,/,- and *): ")
+
+        opt = input("Enter the operation(option +,/,- and *): ").strip()
         if  opt == "q":
             return "Goodbye"
-            
-        if num1.isdigit() and num2.isdigit():
-            num1 = int(num1)
-            num2 = int(num2)
-            if opt == "+":
-                result = num1 + num2
-            elif opt == "-":
-                result = num1 - num2
-            elif opt == "/":
-                if int(num2) == 0:
-                     print("Error: You cannot divide by zero!\n")
-                     continue
-                else:
-                    result = num1 / num2
-            elif opt == "*":
-                result = num1 * num2
-            else:
-                print ("invalid opration")
+
+        try:
+            num1 = float(num1)
+            num2 = float(num2)
+        except ValueError:
+            print("That was not a valid number!")
+            continue
+
+        num1 = int(num1)
+        num2 = int(num2)
+        if opt == "+":
+            result = num1 + num2
+        elif opt == "-":
+            result = num1 - num2
+        elif opt == "/":
+            if int(num2) == 0:
+                print("Error: You cannot divide by zero!\n")
                 continue
-            return result
-        print ("invalid input:  enter a valid number")
+            else:
+                result = num1 / num2
+        elif opt == "*":
+            result = num1 * num2
+        else:
+            print ("invalid opration")
+            continue
+        return result
 
 
 result = calculator()
