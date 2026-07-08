@@ -1,38 +1,30 @@
 def calculator():
     print("Enter q to stop\n")
-
+    result = 0
     while True:
 
         num1 = input("Enter the first number: ").strip()
+        if num1 == "q":
+            return "Goodbye"
         try:
             num1 = float(num1)
         except ValueError:
             print("That was not a valid number!")
             continue
-        if num1 == "q":
-            return "Goodbye"
+        
         num2 = input("Enter the second number: ").strip()
+        if num2 == "q":
+            return "Goodbye"
         try:
             num2 = float(num2)
         except ValueError:
-            print("That was not a valid number!")
+            print("That was not a valid number!\n")
             continue
-        if num2 == "q":
-            return "Goodbye"
+        
 
         opt = input("Enter the operation(option +,/,- and *): ").strip()
         if  opt == "q":
             return "Goodbye"
-
-        try:
-            num1 = float(num1)
-            num2 = float(num2)
-        except ValueError:
-            print("That was not a valid number!")
-            continue
-
-        num1 = int(num1)
-        num2 = int(num2)
         if opt == "+":
             result = num1 + num2
         elif opt == "-":
@@ -46,9 +38,10 @@ def calculator():
         elif opt == "*":
             result = num1 * num2
         else:
-            print ("invalid opration")
+            print ("invalid opration\n")
             continue
-        return result
+        print(result)
+        
 
 
 result = calculator()
