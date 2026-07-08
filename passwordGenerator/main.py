@@ -11,7 +11,7 @@ def password():
     try:
         length = int(length)
     except ValueError:
-        print("enter a valid number")
+        print("enter a valid number ")
     lower  = input("optional: select between \nlower (y/n): ").strip()
     upper  = input("upper (y/n): ").strip()
     symbol  = input("symbol (y/n): ").strip()
