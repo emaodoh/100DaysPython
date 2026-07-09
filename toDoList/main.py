@@ -27,9 +27,9 @@ def todo():
 
             try:
                 taskNum = int(taskNum)
-
-            except ValueError:
-                print("Enter the number of task to remove")
+    # use except ValueError as e: to see the error message
+            except ValueError :
+                print(f"Enter the number of task to remove")
                 continue
 
             if taskNum != 0:
