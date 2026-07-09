@@ -12,14 +12,17 @@ def todo():
         if option == 1:
             task = input("Enter task:  ")
             book.append(task)
-        if option == 2:
+        elif option == 2:
+            if not book:
+                print("\nNo task available")
+                continue
             num = 0
             print("\n-----------List of task-----------\n")
             for task in book:
                 num +=1
                 
                 print(f"{num}.{task}")
-        if option == 3:
+        elif option == 3:
             taskNum = input("number of task to remove: ")
 
             try:
@@ -32,15 +35,18 @@ def todo():
             if taskNum != 0:
                 taskNum -=1
 
-            if taskNum > len(book) or taskNum < 0:
+            if taskNum > len(book)-1 or taskNum < 0:
                 print("No task with that number. View tasks and try again")
                 continue
 
-            del book[taskNum:taskNum+1]
+    # when deleting one item just enter the indix
+            del book[taskNum]
             print("\nTask deleted successfully\n")
 
-        if option == 4:
+        elif option == 4:
             break
+        else:
+            print("\nInvalid input")
 
     return "Goodbye"
         
