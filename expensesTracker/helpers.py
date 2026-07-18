@@ -1,19 +1,23 @@
 
 import json
-
 def add_expense(expenses):
-    expCategory = input("Enter the category of the expense:  ").strip().lower()
-    if not expCategory:
-        print("Enter the category of the expense")
+    
+
     while True:
+        expCategory = input("Enter the category of the expense:  ").strip().lower()
+        expDate = input("Enter the date:  ").strip()
+        expItem = input("Enter the item:  ").lower().strip()        
+        if not expCategory or not expDate or not expItem:
+            print("\n\033[31m[Error] Category, Date, and Item cannot be empty!\033[0m\n")
+            continue
+            
+        
         try:
             expPrice = int(input("Enter price:  "))
             break
         except ValueError:
             print("\n \033[31m Enter only number\033[0m \n")
             continue
-    expDate = input("Enter the date:  ")
-    expItem = input("Enter the item:  ").lower().strip()
                     
     expenses.append({"category":expCategory,"item":expItem, "price":expPrice, "date":expDate})
     write_expenses(expenses)

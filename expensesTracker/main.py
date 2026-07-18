@@ -1,9 +1,13 @@
 import helpers
 import json
 
-with open("expenses.json", "r") as file:
-    expenses = json.load(file)
 
+try:
+
+    with open("expenses.json", "r") as file:
+        expenses = json.load(file)
+except (FileNotFoundError, json.JSONDecodeError):
+    expenses = []
 def tracker():
    
     
