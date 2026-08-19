@@ -30,7 +30,7 @@ def view_expenses(expenses):
     index =0        
     for expense in expenses:
         index+=1
-        print(f"{index}.{expense["category"]}----{expense["item"]}----${expense["price"]}----{expense["date"]}")
+        print(f"{index}.{expense["category"]}   ----{expense["item"]}  ----  ${expense["price"]}  ----  {expense["date"]}")
         print()
 
 def delete_expenses(expenses):
@@ -53,7 +53,7 @@ def delete_expenses(expenses):
 
             break
         else:
-            print("\n \033[31m ----invalid index\033[0m ----\n")
+            print("\n \033[31m ----invalid index\033[0m ---- \n")
             continue
 
 def total_expenses(expenses):
@@ -84,3 +84,62 @@ def filter_expenses(expenses):
 def write_expenses(expenses):
     with open("expenses.json", "w") as data:
         json.dump(expenses, data, indent=3)
+
+def edit_expenses(expenses):
+    
+    if not expenses:
+        print("\n \033[31mNo expenses recorded. \033[0m \n")
+        
+    view_expenses(expenses)
+
+    while True:
+        try:
+            num = int(input().strip())
+
+        except ValueError:
+            print("pleass enter a number")
+            continue
+                    
+        if len(expenses) >= num and num >0:
+            break
+        else:
+            print(" \033[31m pleass select a number of expenses to edit \033[0m ")
+            continue
+    num -=1
+    print(f"\n current category: {expenses[num]["category"]}")
+    newCategory = input("new category (press enter to skip): ").strip().lower()
+
+    if newCategory:
+        expenses[num]["category"] = newCategory
+    print(f"\n current category: {expenses[num]["item"]}")
+    newItem = input("new Item (press enter to skip):  ").strip().lower()
+    if newItem :
+        expenses[num]["item"] = newItem
+
+                
+    while True:
+        try:
+            print(f"\n current category: {expenses[num]["price"]}")
+            newPrice = input("new price (price enter to skip): ").strip()
+            if newPrice == "":
+                break
+            else:
+                newPrice = int(newPrice)
+                        
+                        
+        except ValueError:
+            print("\n \033[31m price most be a number \033[0m \n")
+            continue
+        else:
+            if newPrice != "":
+                expenses[num]["price"] = newPrice
+            break
+
+    print(f"\n current category: {expenses[num]["date"]}")
+    newDate = input("new date (press enter to skip): ").strip()
+
+    if newDate:                
+        expenses[num]["date"] = newDate
+
+    print("\n \033[32mExpense updated successfully!\033[0m\n")
+    write_expenses(expenses)
