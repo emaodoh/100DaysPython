@@ -1,27 +1,26 @@
 [
    {
-      "category": "rent",
+      "category": "renting",
       "item": "monthly rent",
       "price": 30000,
-      "date": "17/07/2026"
+      "date": "2026-07-17"
    },
    {
       "category": "rent",
       "item": "monthly rent",
       "price": 40000,
-      "date": "17/07/2026"
+      "date": "2026-07-17"
    },
    {
       "category": "food",
       "item": "rice and beans",
       "price": 700,
-      "date": "12/12/2026"
+      "date": "2026-01-23"
    },
    {
-      "category": "",
-      "item": "",
-      "price": 45,
-      "date": ""
+      "category": "food",
+      "item": "garii",
+      "price": 150,
+      "date": "2026-01-23"
    }
-
 ]

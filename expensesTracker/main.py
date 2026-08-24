@@ -1,21 +1,20 @@
-import helpers
+import services
 import json
 
+import storage
 
-try:
 
-    with open("expenses.json", "r") as file:
-        expenses = json.load(file)
-except (FileNotFoundError, json.JSONDecodeError):
-    expenses = []
+
+
+expenses = storage.load_expenses()
+
+
 def tracker():
-   
     
     
-        
     print("select from this features to start")
     while True:
-        operation = input("\n 1.Add expense \n 2.View all expenses \n 3.Delete expense \n 4.calculate total spending \n 5.Filter by category \n 6.Exist:  ").strip()
+        operation = input("\n 1.Add expense \n 2.View all expenses \n 3.Delete expense \n 4.calculate total spending \n 5.Filter by category \n 6.Edit an Expenses \n 7.search by item \n 8.search by date \n 0.Exist:  ").strip()
 
         try:
             operation = int(operation)
@@ -25,16 +24,22 @@ def tracker():
 
         match operation:
             case 1:
-                helpers.add_expense(expenses)
+                services.add_expense(expenses)
             case 2:
-                helpers.view_expenses(expenses)
+                services.view_expenses(expenses)
             case 3:   
-                helpers.delete_expenses(expenses)
+                services.delete_expenses(expenses)
             case 4:
-                helpers.total_expenses(expenses)
+                services.total_expenses(expenses)
             case 5:
-                helpers.filter_expenses(expenses)
+                services.filter_expenses(expenses)
             case 6:
+                services.edit_expenses(expenses)
+            case 7:
+                services.search_by_item(expenses)
+            case 8:
+                services.search_by_date(expenses)
+            case 0:
                 break
     print("Goodbye")
 
