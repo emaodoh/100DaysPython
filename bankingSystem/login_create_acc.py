@@ -1,10 +1,22 @@
 import json
 
-def log_in(accountDetails):
-    logInAttempt = 5
-    logedIn = False
-    userName = input("Enter userName:  ").strip()
+
+
+def log_in(accountDetails: list[dict]) -> dict:
+    
+    """ log in to a already existing account"""
+
+    MaxlogInAttempt = 5
+    
+    
     while True:
+
+        userName = input("Enter userName:  ").strip()
+
+        if not userName:
+            print("pleass enter your user name")
+            continue
+
         accountPin = input("Enter your 4 digit pin: ").strip()
         if len(accountPin) != 4:
             print("pin can not be greater than or less then 4")
@@ -15,26 +27,35 @@ def log_in(accountDetails):
         except:
             print("\n \033[33m pleass enter your 4 digit pin \033[0m \n")
             continue
-        for accounts in accountDetails:
-            if accountPin == accounts["accountPin"] and userName == accounts["userName"]:
+        for accountInfor in accountDetails:
+            if accountPin == accountInfor["accountPin"] and userName == accountInfor["userName"]:
                 print("\n \033[33m loged in successful \033[0m \n")
-                return logedIn
-                break
-        if not logedIn:
-            logInAttempt -=1
-            print(f"\n \033[31m Invalid details you have {logInAttempt} attempt left \033[0m \n")
+                return True, accountInfor
+                
+            
+        MaxlogInAttempt -=1
+        print(f"\n \033[31m Invalid details you have {MaxlogInAttempt} attempt left \033[0m \n")
+        
 
-        if logInAttempt == 0:
+        if MaxlogInAttempt == 0:
             print("\n \033[31m Your account have been blocked \033[0m")
             return False
 
 
 
-def Create_account(accountDetails):
-    accountName = input("Enter your name:  ").strip().lower()
+def Create_account(accountDetails: list[dict]) -> None:
+
+    """create a new account """
+    
 
     while True:
-            
+        
+        accountName = input("Enter your name:  ").strip().lower()
+
+        if not accountName:
+            print("Pleass enter your account name")
+            continue
+
         accountNumber = input("Enter your phone number:  ").strip().lower()
             
         if len(accountNumber) != 11 and len(accountNumber) != 10:
@@ -67,22 +88,17 @@ def Create_account(accountDetails):
             print("\n \033[31m pin most be a number \033[0m \n")
             continue
         else:
-            accountName.replace(" ", "")
-            if len(accountName) > 6:
-                userName = accountName[0:6]
+            remove_space_from_name = accountName.replace(" ", "")
+            if len(remove_space_from_name) > 6:
+                userName = remove_space_from_name[0:6]
             else:
                 userName = accountName
 
-            accountDetails.append({"accountName": accountName, "accountPin": accountPin, "accountNumber": accountNumber, "userName": userName})
+            accountDetails.append({"accountName": accountName, "accountPin": accountPin, "accountNumber": accountNumber, "userName": userName, "balance": 0})
             print(f"Your account have been created sucessfully \n Your username: {userName}")
                 
 
             break
 
 
-
-
-def write_accountDetails(accountDetails):
-    with open("accountDetails.json", "w") as data:
-        json.dump(accountDetails, data, indent=3)
 
