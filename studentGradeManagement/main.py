@@ -99,7 +99,7 @@ def grade():
 				print(passScore)
 			
 			case 8:
-				sortedScore = dict(sorted(students.items(), key=lambda student: student[1]))
+				sortedScore = dict(sorted(students.items(), key=lambda student: student[0]))
 
 				for studentName, score in students.items():
 					print(f"\n {studentName} : {score} \n")

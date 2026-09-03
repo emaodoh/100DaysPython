@@ -55,9 +55,18 @@ class BrowserHistory:
     def current_page(self):
         return self.back_stack.peek()
     
+<<<<<<< HEAD
     def forword(self):
 
         site = self.forward_stack.peek()
+=======
+    def forward(self):
+        if self.forward_stack.is_empty():
+            return None
+            
+        site = self.forward_stack.peek()
+        self.history.back_stack.push(site)
+>>>>>>> 017c099 (Save all pending work)
         self.forward_stack.clear()
         return site
 
@@ -68,7 +77,11 @@ history.visit("YouTube")
 history.visit("GitHub")
 
 print(history.back())
+<<<<<<< HEAD
 print(history.forword())
+=======
+print(history.forward())
+>>>>>>> 017c099 (Save all pending work)
 print(history.current_page())
 history.visit("GitHub")
 
