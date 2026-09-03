@@ -2,9 +2,14 @@
 
 import storage
 import validate
+import myClass
 
 
-def add_expense(expenses: list) -> None:
+
+
+
+
+def add_expense(expense_object: list[object]) -> None:
     """add expenses to the a file"""
     
 
@@ -22,18 +27,22 @@ def add_expense(expenses: list) -> None:
 
         
              
-    expenses.append({"category":expense_category,"item":expense_item, "price":expense_price, "date":str(expense_date)})
-    storage.save_expenses(expenses)
+    expense = myClass.Expenses(expense_category,expense_item,str(expense_date),expense_price)
+    expense_object.append(expense)
+    storage.save_expenses(expense_object)
 
-def view_expenses(expenses: list) -> None:
+def view_expenses(expense_object) -> None:
     """view all expense """
-    if not validate.has_expenses(expenses):
+    if not validate.has_expenses(expense_object):
         return
     print("\n-----------------------------------------------------------------------")    
     index =0        
-    for expense in expenses:
+    
+    for expense in expense_object:
+
         index+=1
-        print(f"{index}.{expense["category"]}   {expense["item"]}   ${expense["price"]}   {expense["date"]}")
+
+        print(f"{index}.{expense.category}   {expense.item}   ${expense.price}   {expense.date}")
         print("---------------------------------------------------------------------")
 
 def delete_expenses(expenses: list) -> None:
