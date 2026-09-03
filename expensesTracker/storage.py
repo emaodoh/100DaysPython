@@ -29,7 +29,7 @@ def load_expenses() -> list[object]:
 
         for expense in expenses:
             
-
+  
             expense_obj = myClass.Expenses(expense["category"], expense["item"], expense["date"], expense["price"])
 
             expense_object.append(expense_obj)
