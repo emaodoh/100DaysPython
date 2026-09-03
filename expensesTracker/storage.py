@@ -1,7 +1,7 @@
 import json
-import myClass
+import expense
                 
-def save_expenses(expense_object: list[object]) -> None:
+def save_expenses(expense_object: list[Expense]) -> None:
 
     """svae expense to a file"""
 
@@ -27,10 +27,10 @@ def load_expenses() -> list[object]:
                 
         expense_object = []
 
-        for expense in expenses:
+        for expense1 in expenses:
             
   
-            expense_obj = myClass.Expenses(expense["category"], expense["item"], expense["date"], expense["price"])
+            expense_obj = expense.Expense(expense1["category"], expense1["item"], expense1["date"], expense1["price"])
 
             expense_object.append(expense_obj)
         

@@ -2,14 +2,14 @@
 
 import storage
 import validate
-import myClass
+import expense
 
 
   
 
 
 
-def add_expense(expense_object: list[object]) -> None:
+def add_expense(expense_object: list[Expense]) -> None:
     """add expenses to the a file"""
     
 
@@ -27,11 +27,11 @@ def add_expense(expense_object: list[object]) -> None:
 
         
              
-    expense = myClass.Expenses(expense_category,expense_item,str(expense_date),expense_price)
+    expense = expense.Expense(expense_category,expense_item,str(expense_date),expense_price)
     expense_object.append(expense)
     storage.save_expenses(expense_object)
 
-def view_expenses(expense_object) -> None:
+def view_expenses(expense_object: list[Expense]) -> None:
     """view all expense """
     if not validate.has_expenses(expense_object):
         return
@@ -45,7 +45,7 @@ def view_expenses(expense_object) -> None:
         print(f"{index}.{expense.category}   {expense.item}   ${expense.price}   {expense.date}")
         print("---------------------------------------------------------------------")
 
-def delete_expenses(expenses: list) -> None:
+def delete_expenses(expenses: list[Expense]) -> None:
     """delete existing expense by index""" 
 
     if not validate.has_expenses(expenses):
@@ -67,7 +67,7 @@ def delete_expenses(expenses: list) -> None:
         print("\n \033[31m ----invalid index\033[0m ---- \n")
         
 
-def total_expenses(expenses: list) -> None:
+def total_expenses(expenses: list[Expense]) -> None:
     """sum of all expenses recoded"""
 
     if not validate.has_expenses(expenses):
@@ -76,10 +76,10 @@ def total_expenses(expenses: list) -> None:
 
     amount = 0
     for expense in expenses:
-        amount += expense["price"]
+        amount += expense.price
     print(f"\n Total expenses is: {amount}") 
 
-def filter_expenses(expenses: list) -> None:
+def filter_expenses(expenses: list[Expense]) -> None:
     """filter expenses to display by category"""
 
     if not validate.has_expenses(expenses):
@@ -89,14 +89,14 @@ def filter_expenses(expenses: list) -> None:
     index = 0
     found = False
     for expense in expenses:
-        if expense["category"] == expense_category:
+        if expense.category == expense_category:
             found = True
             index += 1
-            print(f"\033[34m{index}.Item: {expense["item"]}      price:  {expense["price"]}     Date: {expense["date"]}\033[0m")
+            print(f"\033[34m{index}.Item: {expense.item}      price:  {expense.price}     Date: {expense.date}\033[0m")
     if not found:
         print("\n \033[31m The category you entered is not  recorded\033[0m \n")
  
-def edit_expenses(expenses: list) -> None:
+def edit_expenses(expenses: list[Expense]) -> None:
     """edit existing expenses by index"""
     
     if not validate.has_expenses(expenses):
@@ -107,32 +107,32 @@ def edit_expenses(expenses: list) -> None:
     num = validate.validate_index(expenses)
 
     num -=1
-    print(f"\n current category: {expenses[num]["category"]}")
+    print(f"\n current category: {expenses[num].category}")
     newCategory = input("new category (press enter to skip): ").strip().lower()
 
     if newCategory:
-        expenses[num]["category"] = newCategory
-    print(f"\n current item: {expenses[num]["item"]}")
+        expenses[num].category = newCategory
+    print(f"\n current item: {expenses[num].item}")
     newItem = input("new Item (press enter to skip):  ").strip().lower()
     if newItem:
-        expenses[num]["item"] = newItem
+        expenses[num].item = newItem
     
 
 
     new_Price = validate.validate_new_price(expenses, num)
 
-    expenses[num]["price"] = new_Price
-    print(f"\n current date: {expenses[num]["date"]}")
+    expenses[num].price = new_Price
+    print(f"\n current date: {expenses[num].date}")
     new_Date = validate.validate_date()
 
                    
-    expenses[num]["date"] = new_Date
+    expenses[num].date = new_Date
 
     print("\n \033[32mExpense updated successfully!\033[0m\n")
     storage.save_expenses(expenses)
 
 
-def search_by_item(expenses: list) -> None:
+def search_by_item(expenses: list[Expense]) -> None:
     """search through expenses by item"""
 
     if not validate.has_expenses(expenses):
@@ -140,25 +140,25 @@ def search_by_item(expenses: list) -> None:
     item = input("Enter item: ").strip().lower()
     found = False
     for expense in expenses:
-        if item in expense["item"]:
+        if item in expense.item:
             found = True
             print("-" * 30)
-            print(f"{expense["item"]}: {expense["price"]}")
+            print(f"{expense.item}: {expense.price}")
             print("-" * 30)
     if not found:
         print("\n \033[31m Item not found \033[0m \n")
 
 
-def search_by_date(expenses: list) -> None:
+def search_by_date(expenses: list[Expense]) -> None:
     """search through expenses with date"""
-    
+
     
     date = validate.validate_date()
     found = False
     for expense in expenses:
-        if expense["date"] == date:
+        if expense.date == date:
             found = True
-            print(f"{expense["item"]}: {expense["price"]}")
+            print(f"{expense.item}: {expense.price}")
     if not found:
         print("\n \033[31m Date not found \033[0m \n")
 

@@ -1,6 +1,6 @@
 from datetime import datetime,date
 
-def has_expenses(expenses: list[dict]) -> bool:
+def has_expenses(expenses: list[Expense]) -> bool:
     """check for empty expenses list"""
     if not expenses:
         print("\n \033[31m Empty: No expense recorded \033[0m \n")
@@ -45,7 +45,7 @@ def validate_price() -> float:
         return expense_Price
 
 
-def validate_index(expenses: list[dict]) -> int:
+def validate_index(expenses: list[Expense]) -> int:
 
     while True:
 
@@ -62,14 +62,14 @@ def validate_index(expenses: list[dict]) -> int:
             print(" \033[31m pleass select a number of expenses to edit \033[0m ")
             continue
 
-def validate_new_price(expenses: list, num: int) -> int:
+def validate_new_price(expenses: list[Expense], num: int) -> int:
                    
     while True:
         try:
-            print(f"\n current price: {expenses[num]["price"]}")
+            print(f"\n current price: {expenses[num].price}")
             new_Price = input("new price (price enter to skip): ").strip()
             if new_Price == "":
-                return expenses[num]["price"]
+                return expenses[num].price
             else:
                 new_Price = int (new_Price)
                         

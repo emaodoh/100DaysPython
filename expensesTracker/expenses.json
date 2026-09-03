@@ -34,5 +34,11 @@
       "item": "food",
       "date": "2025-02-04",
       "price": 400.0
+   },
+   {
+      "category": "food",
+      "item": "rice",
+      "date": "2026-09-01",
+      "price": 599.0
    }
 ]
