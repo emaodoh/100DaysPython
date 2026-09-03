@@ -7,7 +7,7 @@ def has_expenses(expenses: list[dict]) -> bool:
         return False
     return True
 
-
+    
 def validate_date() -> str:
     """accept and validate user date """
     
