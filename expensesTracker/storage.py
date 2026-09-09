@@ -1,7 +1,7 @@
 import json
 import expense
                 
-def save_expenses(expense_object: list[Expense]) -> None:
+def save_expenses(expense_object: list[expense]) -> None:
 
     """svae expense to a file"""
 
