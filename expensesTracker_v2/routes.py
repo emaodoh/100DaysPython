@@ -10,6 +10,7 @@ expenses = storage.load_expenses()
 
 @main.route("/")
 def home():
+    
 
     statistics = services.expense_statistics(expenses)
 
