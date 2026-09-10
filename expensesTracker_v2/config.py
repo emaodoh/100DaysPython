@@ -1,2 +1,13 @@
 class Config:
-    SECRET_KEY = "12345678901234567890"
+
+    SECRET_KEY = "your-secret-key"
+
+
+class DevelopmentConfig(Config):
+
+    DEBUG = True
+
+
+class ProductionConfig(Config):
+
+    DEBUG = False
