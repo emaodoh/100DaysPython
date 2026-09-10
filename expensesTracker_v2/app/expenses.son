@@ -1,0 +1,37 @@
+[
+   {
+      "new_id": 3,
+      "category": "food",
+      "item": "rice and beans",
+      "date": "2026-01-23",
+      "price": 700.0
+   },
+   {
+      "new_id": 7,
+      "category": "food",
+      "item": "rice",
+      "date": "2026-09-01",
+      "price": 599.0
+   },
+   {
+      "new_id": 8,
+      "category": "food",
+      "item": "rice",
+      "date": "2026-09-10",
+      "price": 45.0
+   },
+   {
+      "new_id": 9,
+      "category": "food",
+      "item": "rice",
+      "date": "2026-09-10",
+      "price": 45.0
+   },
+   {
+      "new_id": 10,
+      "category": "food",
+      "item": "rice",
+      "date": "2026-09-10",
+      "price": 45.0
+   }
+]
