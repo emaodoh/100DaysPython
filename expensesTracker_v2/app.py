@@ -1,11 +1,11 @@
 from flask import Flask, render_template
-
+from config import Config
 
 def create_app():
 
     app = Flask(__name__)
 
-    app.secret_key = "your-secret-key"
+    app.config.from_object(Config)
 
 
     @app.errorhandler(404)
@@ -30,4 +30,3 @@ if __name__ == "__main__":
     app = create_app()
 
     app.run(debug=False)
-    
