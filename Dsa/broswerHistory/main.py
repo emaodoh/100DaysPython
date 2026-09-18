@@ -33,7 +33,6 @@ class Stack:
 
 
 
-
 class BrowserHistory:
     def __init__(self):
         self.back_stack = Stack()
@@ -50,7 +49,7 @@ class BrowserHistory:
         site = self.back_stack.pop()
         self.forward_stack.push(site)
     
-        return site
+        return self.forward_stack.peek()
 
     def current_page(self):
         return self.back_stack.peek()
@@ -58,17 +57,11 @@ class BrowserHistory:
 
     def forword(self):
 
-        site = self.forward_stack.peek()
-
-    def forward(self):
-        if self.forward_stack.is_empty():
-            return None
-            
-        site = self.forward_stack.peek()
+        site = self.forward_stack.pop()
         self.back_stack.push(site)
-
-        self.forward_stack.clear()
         return site
+
+
 
 history = BrowserHistory()
 
@@ -76,12 +69,15 @@ history.visit("Google")
 history.visit("YouTube")
 history.visit("GitHub")
 
+
 print(history.back())
+print(history.back())
+
 
 print(history.forword())
 
-print(history.forward())
+print(history.forword())
 
 print(history.current_page())
-history.visit("GitHub")
+
 
