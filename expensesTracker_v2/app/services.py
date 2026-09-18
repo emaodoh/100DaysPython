@@ -1,11 +1,14 @@
-from . import storage
+
 from . import models
+from .database import create_table
+from .expense_repo import create_expense, get_all_expenses
 
-expenses = storage.load_expenses()
 
 
-def expense_statistics(expenses):
 
+
+def expense_statistics():
+    expenses = get_all_expenses()
     if not expenses:
         return {
             "total": 0,
@@ -32,31 +35,20 @@ def expense_statistics(expenses):
 
 
 def get_expense_by_id(id):
+    expenses = get_all_expenses()
     for expense in expenses:
 
-        if expense.new_id == id:
+        if expense.id == id:
             return expense
 
     return None
 
-def update_expense(expense, category, item, price, date):
-    expense.item = item
-    expense.price = price
-    expense.category = category
-    expense.date = date
-
-    return storage.save_expenses(expenses)
         
-def add_expense(new_id, category, item, date, price):
-    user_expense = models.Expense(new_id, category, item, str(date), price)
-    expenses.append(user_expense)
-    storage.save_expenses(expenses)
+def add_expense(category, item, date, price):
+    create_expense(category, item, price)
+    
+    
+    
 
 
-def delete_expense(id):
-    for expense in expenses:
-        if expense.new_id == id:
-            expenses.remove(expense)
-            break
-    storage.save_expenses(expenses)
 
