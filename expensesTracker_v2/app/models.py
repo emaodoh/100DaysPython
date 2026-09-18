@@ -1,6 +1,6 @@
 class Expense:
-    def __init__(self, new_id, category, item, date, price):
-        self.new_id = new_id
+    def __init__(self, id, category, item, date, price):
+        self.id = id
         self.category = category
         self.item = item
         self.date = date
@@ -9,7 +9,7 @@ class Expense:
     def __repr__(self):
         return (
             
-            f"Expense(new_id={self.new_id!r}, "
+            f"Expense(id={self.id!r}, "
             f"category= {self.category!r}"
             f"item={self.item!r}, "
             f"date={self.date!r}, "
@@ -18,7 +18,7 @@ class Expense:
 
     def __str__(self):
         return (
-            f"new_id: {self.new_id} | "
+            f"id: {self.id} | "
             f"Category: {self.category} | "
             f"Item: {self.item} | "
             f"Date: {self.date} | "
@@ -30,7 +30,7 @@ class Expense:
             return NotImplemented
 
         return (
-            self.new_id == other.new_id
+            self.id == other.id
             and self.category == other.category
             and self.item == other.item
             and self.date == other.date
@@ -39,7 +39,7 @@ class Expense:
 
     def to_dict(self):
         return {
-            "new_id": self.new_id,
+            "id": self.id,
             "category": self.category,
             "item": self.item,
             "date": self.date,
