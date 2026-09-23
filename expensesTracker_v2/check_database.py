@@ -18,8 +18,11 @@ def get_all_expenses():
 
     expenses = cursor.fetchall()
 
-    return expenses
     connection.close()
 
+    return expenses
+
 db = get_all_expenses()
-print(db)
+
+for item in db:
+    print(item)
