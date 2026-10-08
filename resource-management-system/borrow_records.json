@@ -1,0 +1,22 @@
+[
+   {
+      "fellow_id": "F001",
+      "name": "Laptop",
+      "quantity": 3
+   },
+   {
+      "fellow_id": "F002",
+      "name": "Headset",
+      "quantity": 2
+   },
+   {
+      "fellow_id": "F002",
+      "name": "Keyboard",
+      "quantity": 5
+   },
+   {
+      "fellow_id": "F002",
+      "name": "Laptop",
+      "quantity": 1
+   }
+]
